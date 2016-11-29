@@ -4,28 +4,37 @@
 </head>
 <body>
 	<p align="center"><input type="button" id="share_screen" value="Share screen"/></p>
-	<p align="center"><video id="video" autoplay></p>
+	<!--<p align="center"><video id="video" autoplay></p> -->
+	<p align="center"><audio id="audio" autoplay></p>
 	<script language="javascript">
-     	navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.getUserMedia;
+		//ATTENTION: Only chrome allows screen share right now.  This has been converted to use Audio.
+     	navigator.getMedia = ( 
+						   navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia);
+						   
      	document.getElementById('share_screen').onclick = (function() {
           	navigator.getUserMedia({
-                   	audio: false,
-                   	video: {
+                   	audio: true,
+                   	video:false /*{
                        	mandatory: {
-                           	chromeMediaSource: 'screen',
+                           	chromeMediaSource: 'desktop',
                            	maxWidth: 1280,
                            	maxHeight: 720
                        	},
                        	optional: []
-                   	}
+                   	}*/
                	}, function(stream) {
-                   	document.getElementById('video').src = window.URL.createObjectURL(stream);
-                   	document.getElementById('share_screen').setAttribute('visibility','hidden');
-               	}, function() {
+               //    	document.getElementById('video').src = window.URL.createObjectURL(stream);
+					document.getElementById('audio').src = window.URL.createObjectURL(stream);
+                  // 	document.getElementById('share_screen').setAttribute('style','visibility:hidden');
+				  document.getElementById('share_screen').setAttribute('value','ON AIR');
+               	}, function(err) {console.log(err)
                    	alert('Error,Screen stream is not available. Try in latest Chrome with Screen sharing enabled in about:flags.');
                  	}
           	)
-     	})
+     	});
 	</script>
 </body>
 </html>
