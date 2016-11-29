@@ -1,0 +1,29 @@
+{
+  "name": "heroku",
+  "version": "1.0.0",
+  "description": "Example screen share via WebRTC and socket.io",
+  "engines": {
+    "node": "6.0.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "serve-static": "^1.11.1",
+    "socket.io": "^1.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reliableJARED/ScreenScreen"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "ammojs",
+    "multiplayer",
+    "game"
+  ],
+  "license": "GPL-3.0"
+}
